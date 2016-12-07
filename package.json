@@ -15,7 +15,9 @@
     "build:html": "babel-node tools/build.html.js",
     "prebuild": "npm-run-all clean-dist test lint build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "babel-node tools/dist-server.js"
+    "postbuild": "babel-node tools/dist-server.js",
+    "styleguide-server": "styleguidist server",
+    "styleguide-build": "styleguidist build"
   },
   "author": "MeetmeLeave",
   "license": "MIT",
@@ -61,6 +63,7 @@
     "npm-run-all": "1.8.0",
     "open": "0.0.5",
     "react-addons-test-utils": "15.0.2",
+    "react-styleguidist": "^4.4.1",
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.1.1",
