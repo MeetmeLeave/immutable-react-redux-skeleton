@@ -13,7 +13,6 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import io from 'socket.io-client';
 import getClientId from './common/clientId';
