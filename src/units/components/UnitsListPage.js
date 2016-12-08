@@ -3,8 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as unitActions from '../actions';
 
+/**
+* Component is described here.
+*
+* @example ./UnitsListPage.md
+*/
 class UnitsListPage extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -60,7 +64,13 @@ class UnitsListPage extends React.Component {
 }
 
 UnitsListPage.propTypes = {
+    /**
+	 * List of units to be displayed on a page.
+	 */
     units: PropTypes.array,
+    /**
+	 * Redux actions binding.
+	 */
     actions: PropTypes.object
 };
 

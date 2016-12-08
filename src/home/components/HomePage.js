@@ -1,11 +1,19 @@
 import React from 'react';
 
-export default class Home extends React.Component {
+const s = require('./HomePage.css');
+
+/**
+ * Home Page class description goes here.
+ * @example ./HomePage.md
+ */
+class HomePage extends React.Component {
     render() {
         return (
-            <div>
-                Home
+            <div className={s.homeContainer}>
+                Home lol
             </div>
         );
     }
 }
+
+export default HomePage;

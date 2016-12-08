@@ -63,7 +63,7 @@ const store = isInDevMode ?
 
     createStore(
         rootReducer,
-        applyMiddleware(thunk)
+        applyMiddleware(remoteActionMiddleware(socket))
     );
 
 store.dispatch(setClientId(getClientId()));
