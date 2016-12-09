@@ -23,8 +23,7 @@ class UnitsListPage extends React.Component {
     addUnit() {
         this.props.actions.add(
             {
-                id: this.state.counter,
-                title: `unit: ${this.state.counter}`
+                title: `Unit: ${this.state.counter}`
             }
         );
 

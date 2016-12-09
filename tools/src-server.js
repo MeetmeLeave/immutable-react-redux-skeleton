@@ -5,6 +5,8 @@ import config from '../webpack.config.dev';
 import open from 'open';
 import Server from 'socket.io';
 
+import * as actions from '../src/units/actionTypes';
+
 /* eslint-disable no-console */
 
 const port = 3000;
@@ -42,21 +44,21 @@ const io = new Server().attach(8090);
 
 io.on('connection', (socket) => {
     socket.emit('state', units);
-    socket.on('units/ADD', (action) => {
+    socket.on(actions.ADD, (action) => {
         console.log('ADD: ' + action);
         counter += 1;
         action.unit.id = counter;
         units.push(action.unit);
-        socket.emit('units/ADDED', action.unit);
+        socket.emit(actions.ADDED, action.unit);
     });
-    socket.on('units/EDIT', (action) => {
+    socket.on(actions.EDIT, (action) => {
         console.log('EDIT: ' + action);
         units[+action.unit.id] = action.unit;
-        socket.emit('units/EDITED', action.unit);
+        socket.emit(actions.EDITED, action.unit);
     });
-    socket.on('units/DELETE', (action) => {
+    socket.on(actions.DELETE, (action) => {
         console.log('DELETE: ' + action);
         units.splice(action.id, 1);
-        socket.emit('units/DELETED', action.id);
+        socket.emit(actions.DELETED, action.id);
     });
 });
