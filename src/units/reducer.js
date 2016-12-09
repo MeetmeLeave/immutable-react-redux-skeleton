@@ -12,11 +12,15 @@ export default function (state = initState.units, action) {
         case actionTypes.DELETED:
             return state.filter(unit => unit.id !== action.id);
         case actionTypes.EDITED:
-            let index = state.findIndex(unit => unit.id === action.unit.id);
-            return state.update(index, () => {
-                return action.unit;
-            });
+            return updateUnitById(state, action.unit);
     }
 
     return state;
+}
+
+function updateUnitById(state, unit) {
+    let index = state.findIndex(unit => unit.id === unit.id);
+    return state.update(index, () => {
+        return unit;
+    });
 }

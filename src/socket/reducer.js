@@ -19,8 +19,6 @@ export default function (state = initState.socket, action) {
             return state.set('clientId', action.clientId);
         case actionTypes.SET_CONNECTION_STATE:
             return setConnectionState(state, action.state, action.connected);
-        // case actionTypes.SET_STATE:
-        //     return state.units.merge(action.units);
     }
     return state;
 }

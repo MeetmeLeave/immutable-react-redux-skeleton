@@ -39,6 +39,7 @@ class UnitsListPage extends React.Component {
     }
 
     render() {
+        /* eslint-disable react/jsx-no-bind */
         return (
             <div>
                 Total units count: {this.props.units.length}
@@ -54,7 +55,7 @@ class UnitsListPage extends React.Component {
                             <div className="col-md-1">{unit.id}</div>
                             <div className="col-md-4">{unit.title}</div>
                         </div>
-                    )
+                    );
                 })}
                 <button onClick={this.addUnit} >Add Unit</button>
             </div>

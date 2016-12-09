@@ -1,1 +1,1 @@
-console.log('Need at least one test file, to make build pass with current config');
+//Need at least one test file, to make build pass with current config'

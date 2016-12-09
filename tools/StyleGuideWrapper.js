@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
