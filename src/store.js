@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 // import getClientId from './common/clientId';
 // import socketWrapper from './socket';
 import createSagaMiddleware from 'redux-saga';
-import socketSaga from './sagas/socketSaga';
+import socketRootSaga, {InitActionType} from './sagas/socketSaga';
 
 export default function initStore(isInDevMode, DevTools) {
     // const socket = socketWrapper.socketWrapper();
@@ -24,9 +24,9 @@ export default function initStore(isInDevMode, DevTools) {
             applyMiddleware(/*socketWrapper.remoteActionMiddleware(socket),*/ sagaMiddleware)
         );
 
-    sagaMiddleware.run(socketSaga);
+    sagaMiddleware.run(socketRootSaga);
     // socketWrapper.socketSubscribe(socket, store);
-    store.dispatch({ type: 'CONNECT' });
+    store.dispatch({ type: InitActionType });
 
     return store;
 }
