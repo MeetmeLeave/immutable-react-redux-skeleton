@@ -6,7 +6,7 @@ import * as unitActions from '../actions';
 /**
 * Component is described here.
 *
-* @example ../../../docs/UnitsListPage.md
+* @example ./UnitsListPage.md
 */
 class UnitsListPage extends React.Component {
     constructor(props) {

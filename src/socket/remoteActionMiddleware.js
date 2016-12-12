@@ -3,5 +3,6 @@ export default socket => store => next => action => {
         const clientId = store.getState().get('clientId');
         socket.emit(action.type, action);
     }
+    
     return next(action);
 };

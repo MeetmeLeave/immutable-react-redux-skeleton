@@ -35,30 +35,34 @@ app.listen(port, function (err) {
 let counter = 2;
 
 const units = [
-    { id: '0', title: 'Unit 0' },
-    { id: '1', title: 'Unit 1' },
-    { id: '2', title: 'Unit 2' }
+    { id: 0, title: 'Unit 0' },
+    { id: 1, title: 'Unit 1' },
+    { id: 2, title: 'Unit 2' }
 ];
 
 const io = new Server().attach(8090);
 
 io.on('connection', (socket) => {
-    socket.emit('state', units);
-    socket.on(actions.ADD, (action) => {
-        console.log('ADD: ' + action);
-        counter += 1;
-        action.unit.id = counter;
-        units.push(action.unit);
-        socket.emit(actions.ADDED, action.unit);
-    });
-    socket.on(actions.EDIT, (action) => {
-        console.log('EDIT: ' + action);
-        units[+action.unit.id] = action.unit;
-        socket.emit(actions.EDITED, action.unit);
-    });
-    socket.on(actions.DELETE, (action) => {
-        console.log('DELETE: ' + action);
-        units.splice(action.id, 1);
-        socket.emit(actions.DELETED, action.id);
+    console.log('connected');
+    socket.on('load', () => {
+        console.log('load');
+        socket.emit(actions.LOADED, units);
+        socket.on(actions.ADD, (unit) => {
+            console.log('ADD: ' + JSON.stringify(unit));
+            counter += 1;
+            unit.id = counter;
+            units.push(unit);
+            socket.emit(actions.ADDED, unit);
+        });
+        socket.on(actions.EDIT, (unit) => {
+            console.log('EDIT: ' + JSON.stringify(unit));
+            units[+unit.id] = unit;
+            socket.emit(actions.EDITED, unit);
+        });
+        socket.on(actions.DELETE, (id) => {
+            console.log('DELETE: ' + JSON.stringify(id));
+            units.splice(id, 1);
+            socket.emit(actions.DELETED, id);
+        });
     });
 });

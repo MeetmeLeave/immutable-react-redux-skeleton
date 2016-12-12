@@ -1,5 +1,10 @@
 import * as actionTypes from './actionTypes';
 
+export const loaded = (units) => ({
+    type: actionTypes.LOADED,
+    units
+});
+
 export const add = (unit) => ({
   meta: {remote: true},
   type: actionTypes.ADD,

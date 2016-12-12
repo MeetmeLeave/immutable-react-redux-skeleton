@@ -4,7 +4,7 @@ const s = require('./HomePage.css');
 
 /**
  * Home Page class description goes here.
- * @example ../../../docs/HomePage.md
+ * @example ./HomePage.md
  */
 class HomePage extends React.Component {
     render() {
