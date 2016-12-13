@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import initState from './initState';
 import units from './units';
-import socket from './socket';
+
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
@@ -15,6 +15,5 @@ const navigationReducer = (state = initState.navigation, {type, payload}) => {
 
 export default combineReducers({
     [units.constants.NAME]: units.reducer,
-    [socket.constants.NAME]: socket.reducer,
     routing: navigationReducer
 });

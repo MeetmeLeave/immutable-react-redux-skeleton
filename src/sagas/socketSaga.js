@@ -1,6 +1,5 @@
 import { eventChannel } from 'redux-saga';
 import { put, take, call, fork } from 'redux-saga/effects';
-import io from 'socket.io-client';
 
 import * as unitActionTypes from '../units/actionTypes';
 import * as unitActions from '../units/actions';
@@ -10,9 +9,9 @@ import * as unitActions from '../units/actions';
 export const InitActionType = 'CONNECT';
 
 function connect() {
-    const socket = io(`${location.protocol}//${location.hostname}:8090`);
+    const socket = new WebSocket('ws://localhost:8090');
     return new Promise(resolve => {
-        socket.on('connect', () => {
+        socket.addEventListener('open', () => {
             resolve(socket);
         });
     });
@@ -20,19 +19,25 @@ function connect() {
 
 function* subscribeToSocketEventChannel(socket) {
     return eventChannel(emitter => {
-        socket.emit('load');
-        socket.on(unitActionTypes.LOADED, units => {
-            emitter(unitActions.loaded(units));
+        socket.send(`{"type" : "load"}`);
+        socket.addEventListener('message', message => {
+            const object = JSON.parse(message.data);
+            switch (object.type) {
+                case unitActionTypes.LOADED:
+                    emitter(unitActions.loaded(object.units));
+                    break;
+                case unitActionTypes.ADDED:
+                    emitter(unitActions.added(object.unit));
+                    break;
+                case unitActionTypes.EDITED:
+                    emitter(unitActions.updated(object.unit));
+                    break;
+                case unitActionTypes.DELETED:
+                    emitter(unitActions.deleted(object.id));
+                    break;
+            }
         });
-        socket.on(unitActionTypes.ADDED, unit => {
-            emitter(unitActions.added(unit));
-        });
-        socket.on(unitActionTypes.EDITED, unit => {
-            emitter(unitActions.updated(unit));
-        });
-        socket.on(unitActionTypes.DELETED, id => {
-            emitter(unitActions.deleted(id));
-        });
+
         return () => { };
     });
 }
@@ -41,23 +46,13 @@ function* handleInput(socket) {
     while (true) {
         const action = yield take(
             [
-                unitActionTypes.ADD, 
-                unitActionTypes.EDIT, 
+                unitActionTypes.ADD,
+                unitActionTypes.EDIT,
                 unitActionTypes.DELETE
             ]
         );
-
-        switch (action.type) {
-            case unitActionTypes.ADD:
-                socket.emit(unitActionTypes.ADD, action.unit);
-                break;
-            case unitActionTypes.EDIT:
-                socket.emit(unitActionTypes.EDIT, action.unit);
-                break;
-            case unitActionTypes.DELETE:
-                socket.emit(unitActionTypes.DELETE, action.id);
-                break;
-        }
+        console.log(action);
+        socket.send(JSON.stringify(action));
     }
 }
 
