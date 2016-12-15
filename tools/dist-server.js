@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import open from 'open';
 import compression from 'compression';
-import Server from 'socket.io';
 
 import * as actions from '../src/units/actionTypes';
 
@@ -29,30 +28,50 @@ app.listen(port, function (err) {
 let counter = 2;
 
 const units = [
-    { id: '0', title: 'Unit 0' },
-    { id: '1', title: 'Unit 1' },
-    { id: '2', title: 'Unit 2' }
+    { id: 0, title: 'Unit 0' },
+    { id: 1, title: 'Unit 1' },
+    { id: 2, title: 'Unit 2' }
 ];
 
-const io = new Server().attach(8090);
+const WebSocketServer = require('ws').Server
+    , wss = new WebSocketServer({ port: 8090 });
 
-io.on('connection', (socket) => {
-    socket.emit('state', units);
-    socket.on(actions.ADD, (action) => {
-        console.log('ADD: ' + action);
-        counter += 1;
-        action.unit.id = counter;
-        units.push(action.unit);
-        socket.emit(actions.ADDED, action.unit);
-    });
-    socket.on(actions.EDIT, (action) => {
-        console.log('EDIT: ' + action);
-        units[+action.unit.id] = action.unit;
-        socket.emit(actions.EDITED, action.unit);
-    });
-    socket.on(actions.DELETE, (action) => {
-        console.log('DELETE: ' + action);
-        units.splice(action.id, 1);
-        socket.emit(actions.DELETED, action.id);
+wss.on('connection', (socket) => {
+    console.log('connected');
+    socket.on('message', (e) => {
+        console.log(e);
+        const action = JSON.parse(e);
+        let reply = {};
+
+        switch (action.type) {
+            case 'load':
+                reply.type = actions.LOADED;
+                reply.units = units;
+                socket.send(JSON.stringify(reply));
+                break;
+            case actions.ADD:
+                let unitToAdd = action.unit;
+                counter += 1;
+                unitToAdd.id = counter;
+                units.push(unitToAdd);
+                reply.type = actions.ADDED;
+                reply.unit = unitToAdd;
+                socket.send(JSON.stringify(reply));
+                break;
+            case actions.EDIT:
+                let unitToEdit = action.unit;
+                units[+unitToEdit.id] = unitToEdit;
+                reply.type = actions.EDITED;
+                reply.unit = unitToEdit;
+                socket.send(JSON.stringify(reply));
+                break;
+            case actions.DELETE:
+                let id = action.id;
+                units.splice(id, 1);
+                reply.type = actions.DELETED;
+                reply.id = id;
+                socket.send(JSON.stringify(reply));
+                break;
+        }
     });
 });

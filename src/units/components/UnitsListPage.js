@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import UnitsListRow from './UnitsListRow';
 import * as unitActions from '../actions';
 
 /**
@@ -8,7 +9,7 @@ import * as unitActions from '../actions';
 *
 * @example ./UnitsListPage.md
 */
-class UnitsListPage extends React.Component {
+export class UnitsListPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -50,11 +51,7 @@ class UnitsListPage extends React.Component {
                 </div>
                 {this.props.units.map((unit) => {
                     return (
-                        <div className="row" key={unit.id}>
-                            <a href="#" onClick={(event) => this.deleteUnit(event, unit.id)} className="col-md-2">Delete</a>
-                            <div className="col-md-1">{unit.id}</div>
-                            <div className="col-md-4">{unit.title}</div>
-                        </div>
+                        <UnitsListRow key={unit.id} unit={unit} deleteUnit={this.deleteUnit} />
                     );
                 })}
                 <button onClick={this.addUnit} >Add Unit</button>

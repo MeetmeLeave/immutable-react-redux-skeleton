@@ -2,3 +2,5 @@ node_modules
 npm-debug.log
 dist
 styleguide
+__screenshots__
+__snapshots__
