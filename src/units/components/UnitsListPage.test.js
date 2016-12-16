@@ -6,14 +6,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
 
-import rootReducer from '../../src/rootReducer';
+import rootReducer from '../../rootReducer';
 
 import { Differ, DEVICE_SIZES } from 'react-cornea';
 
-import { UnitsListPage } from '../../src/units/components/UnitsListPage';
-import * as actionTypes from '../../src/units/actionTypes';
+import { UnitsListPage } from './UnitsListPage';
+import * as actionTypes from '../actionTypes';
 
-const yourFilePath = path.join(__dirname, '__screenshots__', '/');
 const componentName = 'UnitsListPage';
 
 describe('UnitsListPage', () => {
@@ -29,7 +28,7 @@ describe('UnitsListPage', () => {
         var differ = new Differ({
             component: <UnitsListPage units={units} />,
             componentName,
-            savePath: yourFilePath,
+            savePath: './__tests__/' + componentName + '/__screenshots__/',
             onSnapshotCreated: done
         });
 

@@ -1,22 +1,18 @@
 import path from 'path';
-import fs from 'fs';
 import React from 'react';
 import { Differ } from 'react-cornea';
 
-import HomePage from '../../src/home/components/HomePage';
+import HomePage from './HomePage';
 
-const yourFilePath = path.join(__dirname, '__screenshots__', '/');
 const componentName = 'HomePage';
 
 describe('HomePage', () => {
-    const css = fs.readFileSync('./src/home/components/HomePage.css').toString();
     it('render base HomePage', (done) => {
         var differ = new Differ({
             component: <HomePage />,
             componentName,
-            savePath: yourFilePath,
-            onSnapshotCreated: done,
-            css
+            savePath: './__tests__/' + componentName + '/__screenshots__/',
+            onSnapshotCreated: done
         });
 
         differ.compare().then(e => {
