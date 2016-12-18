@@ -1,5 +1,5 @@
-import React from 'react';
-const styles = require('./HomePage.css');
+import React, {PropTypes} from 'react';
+import css from './HomePage.css';
 
 /**
  * Home Page class description goes here.
@@ -8,7 +8,7 @@ const styles = require('./HomePage.css');
 class HomePage extends React.Component {
     render() {
         return (
-            <div className={styles.homeContainer}>
+            <div className={css.homeContainer}>
                 <p className="text-primary">Home lol</p>
             </div>
         );

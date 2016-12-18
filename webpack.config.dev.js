@@ -29,8 +29,8 @@ export default {
             include: path.join(__dirname, 'src'),
             loaders: ['babel']
         }, {
-            test: /(\.css)$/,
-            loaders: ['style', 'css']
+            test: /\.css$/,
+            loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         }, {
             test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
             loader: 'file'

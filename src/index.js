@@ -14,7 +14,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import initStore from './store';
 
-import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const isInDevMode = process.env.NODE_ENV !== 'production';

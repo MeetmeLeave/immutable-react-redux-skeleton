@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 
+/**
+ * Header class description goes here.
+ * @example ./Header.md
+ */
 const Header = () => {
     return (
         <nav>

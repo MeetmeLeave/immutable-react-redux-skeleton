@@ -4,13 +4,16 @@ module.exports = {
     title: 'Units styleguide',
     sections: [
         {
+            name: 'Common',
+            components: './src/common/components/Header.js'
+        },
+        {
             name: 'Home',
             components: './src/home/components/HomePage.js'
         },
         {
             name: 'Units',
             components: './src/units/components/UnitsListPage.js'
-
         }
     ],
     updateWebpackConfig(webpackConfig) {
