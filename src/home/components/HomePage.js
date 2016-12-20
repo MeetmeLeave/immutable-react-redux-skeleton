@@ -1,5 +1,6 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import css from './HomePage.css';
+import bootstrap from '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Home Page class description goes here.
@@ -9,7 +10,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <div className={css.homeContainer}>
-                <p className="text-primary">Home lol</p>
+                <p className={bootstrap['text-primary']}>Home lol</p>
             </div>
         );
     }

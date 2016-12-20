@@ -9,7 +9,7 @@ const componentName = 'HomePage';
 describe('HomePage', () => {
     const css = fs.readFileSync('./src/home/components/HomePage.css').toString();
     it('render base HomePage', (done) => {
-        var differ = new Differ({
+        const differ = new Differ({
             component: <HomePage />,
             componentName,
             savePath: '__tests__\\' + componentName + '\\',

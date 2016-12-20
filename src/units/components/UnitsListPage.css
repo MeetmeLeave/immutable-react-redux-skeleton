@@ -1,0 +1,9 @@
+@media (min-width: 700px) {
+    .sidebar-desktop {
+        float: left;
+        margin-right: 10px;
+    }
+    .table-wrapper-desktop {
+        column-count: 2;
+    }
+}

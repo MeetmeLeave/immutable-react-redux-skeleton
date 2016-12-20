@@ -51,7 +51,6 @@ function* handleInput(socket) {
                 unitActionTypes.DELETE
             ]
         );
-        console.log(action);
         socket.send(JSON.stringify(action));
     }
 }

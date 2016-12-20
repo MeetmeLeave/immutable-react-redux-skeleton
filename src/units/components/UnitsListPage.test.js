@@ -13,7 +13,7 @@ describe('UnitsListPage', () => {
             { id: 0, tittle: '0' }
         ];
 
-        var differ = new Differ({
+        const differ = new Differ({
             component: <UnitsListPage units={units} />,
             componentName,
             savePath: '__tests__\\' + componentName + '\\',

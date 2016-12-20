@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UnitsListRow from './UnitsListRow';
 import * as unitActions from '../actions';
+import css from './UnitsListPage.css';
+import bootstrap from '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 /**
 * Component is described here.
@@ -43,18 +45,26 @@ export class UnitsListPage extends React.Component {
         /* eslint-disable react/jsx-no-bind */
         return (
             <div>
-                Total units count: {this.props.units.length}
-                <div className="row">
-                    <div className="col-md-2"></div>
-                    <div className="col-md-1">Id</div>
-                    <div className="col-md-4">Title</div>
+                <div className={css['sidebar-desktop']}>
+                    Total units count: {this.props.units.length}
                 </div>
-                {this.props.units.map((unit) => {
-                    return (
-                        <UnitsListRow key={unit.id} unit={unit} deleteUnit={this.deleteUnit} />
-                    );
-                })}
-                <button onClick={this.addUnit} >Add Unit</button>
+                <div className={css['table-wrapper-desktop']}>
+                    <table className={`${bootstrap['table']} ${bootstrap['table-hover']}`}>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>#</td>
+                                <td>Title</td>
+                            </tr>
+                            {this.props.units.map((unit) => {
+                                return (
+                                    <UnitsListRow key={unit.id} unit={unit} deleteUnit={this.deleteUnit} />
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+                <button onClick={this.addUnit} className={`${bootstrap['btn']} ${bootstrap['btn-primary']}`}>Add Unit</button>
             </div>
         );
     }

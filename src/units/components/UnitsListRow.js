@@ -2,11 +2,17 @@ import React, { PropTypes } from 'react';
 
 const UnitsListRow = ({unit, deleteUnit}) => {
     return (
-        <div className="row" key={unit.id}>
-            <a href="#" onClick={(event) => deleteUnit(event, unit.id)} className="col-md-2">Delete</a>
-            <div className="col-md-1">{unit.id}</div>
-            <div className="col-md-4">{unit.title}</div>
-        </div>
+        <tr key={unit.id}>
+            <td>
+                <a href="#" onClick={(event) => deleteUnit(event, unit.id)}>Delete</a>
+            </td>
+            <td>
+                {unit.id}
+            </td>
+            <td>
+                {unit.title}
+            </td>
+        </tr>
     );
 };
 
