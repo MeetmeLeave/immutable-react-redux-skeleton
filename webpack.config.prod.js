@@ -34,7 +34,7 @@ export default {
             loaders: ['babel']
         }, {
             test: /(\.css)$/,
-            loader: ExtractTextPlugin.extract('css?sourceMap')
+            loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
         }, {
             test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
             loader: 'file'

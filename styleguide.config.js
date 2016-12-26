@@ -2,20 +2,7 @@ const path = require('path');
 
 module.exports = {
     title: 'Units styleguide',
-    sections: [
-        {
-            name: 'Common',
-            components: './src/common/components/Header.js'
-        },
-        {
-            name: 'Home',
-            components: './src/home/components/HomePage.js'
-        },
-        {
-            name: 'Units',
-            components: './src/units/components/UnitsListPage.js'
-        }
-    ],
+    components: './src/**/components/**.js',
     updateWebpackConfig(webpackConfig) {
 
         const styles = path.resolve(__dirname, './node_modules/bootstrap/dist/');
@@ -56,6 +43,8 @@ module.exports = {
                 loader: 'url?limit=10000&mimetype=image/svg+xml'
             }
         );
+
+        webpackConfig.entry.unshift('babel-polyfill');
         return webpackConfig;
     }
 };

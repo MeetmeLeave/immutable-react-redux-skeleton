@@ -11,7 +11,7 @@ import bootstrap from '../../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 *
 * @example ./UnitsListPage.md
 */
-export class UnitsListPage extends React.Component {
+class UnitsListPage extends React.Component {
     constructor(props) {
         super(props);
 
