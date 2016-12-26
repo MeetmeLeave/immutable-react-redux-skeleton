@@ -68,7 +68,6 @@
     "open": "0.0.5",
     "phantomjs-prebuilt": "^2.1.4",
     "react-addons-test-utils": "^15.3.0",
-    "react-cornea": "^1.0.5",
     "react-styleguidist": "^4.4.1",
     "react-test-renderer": "*",
     "redux-devtools": "^3.3.1",

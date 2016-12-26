@@ -1,6 +1,8 @@
 /* eslint-disable no-var */
 /* eslint-disable no-undef */
+/* eslint-disable no-console */
 
+var port = 8080;
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/phantomcss.js');
 var phantomcss = require(path);
@@ -9,7 +11,7 @@ var server = require('webserver').create();
 var html = fs.read(fs.absolute(fs.workingDirectory + '/styleguide/index.html'));
 var js = fs.read(fs.absolute(fs.workingDirectory + '/styleguide/build/bundle.js'));
 
-server.listen(8080, function (req, res) {
+server.listen(port, function (req, res) {
     switch (req.url) {
         case '/build/bundle.js':
             res.write(js);
@@ -56,7 +58,7 @@ casper.test.begin('React components test', function (test) {
         casper.log('Resource load error: ' + err, 'warning');
     });
 
-    casper.start('http://localhost:8080');
+    casper.start('http://localhost:' + port);
 
     casper.viewport(1024, 768);
 
