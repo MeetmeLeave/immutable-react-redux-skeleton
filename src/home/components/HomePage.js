@@ -10,7 +10,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <div className={css.homeContainer}>
-                <p className={bootstrap['text-primary']}>Home lol</p>
+                This is our <kbd>Home page</kbd>
             </div>
         );
     }

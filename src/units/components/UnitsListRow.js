@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
 
+/** 
+* 
+* @example ./UnitsListRow.md
+*/
 const UnitsListRow = ({unit, deleteUnit}) => {
     return (
         <tr key={unit.id}>

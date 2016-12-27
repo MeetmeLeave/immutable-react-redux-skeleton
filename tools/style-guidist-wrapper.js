@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
 import rootReducer from '../src/rootReducer';
 
-export default class StyleGuideWrapper extends Component {
+export default class StyleguidistWrapper extends Component {
 
     constructor(props) {
         super(props);

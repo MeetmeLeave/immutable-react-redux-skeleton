@@ -13,7 +13,7 @@ module.exports = {
         ];
 
         webpackConfig.entry.push(path.join(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'));
-        webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'tools/StyleGuideWrapper');
+        webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'tools/style-guidist-wrapper');
 
         webpackConfig.module.loaders.push(
             {
