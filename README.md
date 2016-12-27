@@ -1,6 +1,4 @@
-# immutable-react-redux-skeleton
-
-# H2 React project Skeleton.
+# React project Skeleton.
 
 Main features:
 - Cross-platform (Win/Mac verified).
