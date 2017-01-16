@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import css from './HomePage.css';
-import bootstrap from '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Home Page class description goes here.
@@ -9,7 +7,7 @@ import bootstrap from '../../../node_modules/bootstrap/dist/css/bootstrap.min.cs
 class HomePage extends React.Component {
     render() {
         return (
-            <div className={css.homeContainer}>
+            <div className="homeContainer">
                 This is our <kbd>Home page</kbd>
             </div>
         );

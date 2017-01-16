@@ -11,6 +11,10 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './home/components/HomePage.css';
+import './units/components/UnitsListPage.css';
+
 import routes from './routes';
 import initStore from './store';
 

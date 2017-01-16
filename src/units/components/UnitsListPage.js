@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import UnitsListRow from './UnitsListRow';
 import * as unitActions from '../actions';
-import css from './UnitsListPage.css';
-import bootstrap from '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 /**
 * Component is described here.
@@ -45,11 +43,11 @@ class UnitsListPage extends React.Component {
         /* eslint-disable react/jsx-no-bind */
         return (
             <div>
-                <div className={css['sidebar-desktop']}>
+                <div className="sidebar-desktop">
                     Total units count: {this.props.units.length}
                 </div>
-                <div className={css['table-wrapper-desktop']}>
-                    <table className={`${bootstrap['table']} ${bootstrap['table-hover']}`}>
+                <div className="table-wrapper-desktop">
+                    <table className="table table-hover">
                         <tbody>
                             <tr>
                                 <td></td>
@@ -64,7 +62,7 @@ class UnitsListPage extends React.Component {
                         </tbody>
                     </table>
                 </div>
-                <button onClick={this.addUnit} className={`${bootstrap['btn']} ${bootstrap['btn-primary']}`}>Add Unit</button>
+                <button onClick={this.addUnit} className="btn btn-primary">Add Unit</button>
             </div>
         );
     }

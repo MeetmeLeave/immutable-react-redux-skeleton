@@ -24,7 +24,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: [...dirs, styles],
-                loader: 'style!css?modules&importLoaders=1'
+                loaders: ['style', 'css?root=.', 'postcss']
             }, {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
                 include: [styles],
