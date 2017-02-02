@@ -3,8 +3,7 @@
     "version": "1.0.0",
     "description": "Skeleton for react-redux with Immutabe.js, redux router and socket.io",
     "scripts": {
-        "prestart": "babel-node tools/start-message.js",
-        "start": "npm-run-all --parallel open:src lint:watch",
+        "dev": "npm-run-all --parallel open:src lint:watch",
         "open:src": "babel-node tools/src-server.js",
         "lint": "node_modules/.bin/esw webpack.config.* src tools",
         "lint:watch": "npm run lint -- --watch",

@@ -82,7 +82,7 @@ casper.test.begin('React components test', function (test) {
     });
 
     casper.run(function () {
-        console.log('\nTHE END.');
+        console.log('\nTEST FINISHED.');
         phantomcss.getExitStatus();
         casper.test.done();
     });

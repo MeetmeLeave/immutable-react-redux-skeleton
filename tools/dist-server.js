@@ -37,7 +37,6 @@ const WebSocketServer = require('ws').Server
     , wss = new WebSocketServer({ port: 8090 });
 
 wss.on('connection', (socket) => {
-    console.log('connected');
     socket.on('message', (e) => {
         console.log(e);
         const action = JSON.parse(e);
