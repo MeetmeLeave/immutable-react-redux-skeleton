@@ -2,6 +2,7 @@
     "name": "immutable-react-react-redux-skeleton",
     "version": "1.0.0",
     "description": "Skeleton for react-redux with Immutabe.js, redux router and web sockets",
+    "private": false,
     "scripts": {
         "dev": "npm-run-all --parallel open:src lint:watch",
         "open:src": "babel-node tools/src-server.js",
@@ -95,6 +96,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/MeetmeLeave/immutable-react-redux-skeleton"
+        "url": "https://github.com/MeetmeLeave/react-redux-ws-skeleton.git"
     }
 }
