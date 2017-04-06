@@ -1,50 +1,44 @@
 const path = require('path');
+const loaders = require('loaders');
+const componentWrapper = path.join(__dirname, 'tools/style-guidist-wrapper');
+const productionWebpackConfig = require('./webpack.config.prod');
+const devWebpackConfig = require('./webpack.config.dev');
 
 module.exports = {
-    title: 'Units styleguide',
+    title: 'Units Styleguide',
+    serverHost: '0.0.0.0',
+    serverPort: 3030,
+    skipComponentsWithoutExample: true,
+    getExampleFilename(componentpath) {
+        return componentpath.replace(/\.js?$/, '.md');
+    },
+    getComponentPathLine(componentPath) {
+        const name = path.basename(componentPath);
+        const dir = path
+            .dirname(componentPath)
+            .replace('../../', '');
+        return `${dir}/${name}`;
+    },
+    styleguideDir: path.resolve(__dirname, '../../styleguide'),
     components: './src/**/components/**.js',
-    updateWebpackConfig(webpackConfig) {
+    require: [
+        'bootstrap-loader', componentWrapper, path.resolve(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css')
+    ],
+    webpackConfig(env) {
+        const webpackConfig = 'production' === env
+            ? productionWebpackConfig
+            : devWebpackConfig;
+        if (!webpackConfig.resolve) {
+            webpackConfig.resolve = {};
+        }
 
-        const styles = path.resolve(__dirname, './node_modules/bootstrap/dist/');
+        if (!webpackConfig.resolve.alias) {
+            webpackConfig.resolve.alias = {};
+        }
 
-        const dirs = [
-            path.resolve(__dirname, 'src'),
-            path.resolve(__dirname, 'tools')
-        ];
-
-        webpackConfig.entry.push(path.join(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'));
-        webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'tools/style-guidist-wrapper');
-
-        webpackConfig.module.loaders.push(
-            {
-                test: /\.js?$/,
-                include: dirs,
-                loader: 'babel'
-            },
-            {
-                test: /\.css$/,
-                include: [...dirs, styles],
-                loaders: ['style', 'css?root=.', 'postcss']
-            }, {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                include: [styles],
-                loader: 'file'
-            }, {
-                test: /\.(woff|woff2)$/,
-                include: [styles],
-                loader: 'url?prefix=font/&limit=5000'
-            }, {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                include: [styles],
-                loader: 'url?limit=10000&mimetype=application/octet-stream'
-            }, {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                include: [styles],
-                loader: 'url?limit=10000&mimetype=image/svg+xml'
-            }
-        );
-
-        webpackConfig.entry.unshift('babel-polyfill');
+        webpackConfig.resolve.alias = {
+            'rsg-components/Wrapper': componentWrapper
+        };
         return webpackConfig;
     }
 };

@@ -5,6 +5,7 @@ import * as unitActionTypes from '../units/actionTypes';
 import * as unitActions from '../units/actions';
 
 /* eslint-disable no-constant-condition */
+/* eslint-disable require-yield */
 
 export const InitActionType = 'CONNECT';
 
